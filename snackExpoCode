@@ -1,0 +1,123 @@
+import React from 'react';
+import { SafeAreaView, ScrollView, View, Text, StyleSheet } from 'react-native';
+
+const studentInfo = {
+  name: 'Ron Jhon Kurt Diego',
+  age: 20,
+  course: 'BS Computer Science',
+  year: '3rd Year - Section 4',
+  about: "Curious student who loves building apps, learning new tools, and solving problems. Coffee enthusiast and late-night coder.",
+  awards: ['Consistent Dean’s Lister'],
+  skills: ['Frontend Developing', 'Critical Thinking'],
+};
+
+export default function ProfileScreen() {
+  return (
+    <SafeAreaView style={styles.page}>
+      <ScrollView contentContainerStyle={styles.main}>
+        
+        <View style={styles.headerBox}>
+          <View style={styles.textPart}>
+            <Text style={styles.name}>{studentInfo.name}</Text>
+            <Text style={styles.course}>{studentInfo.course}</Text>
+            <View style={styles.row}>
+              <View style={styles.tag}><Text style={styles.tagText}>Age {studentInfo.age}</Text></View>
+              <View style={styles.tag}><Text style={styles.tagText}>{studentInfo.year}</Text></View>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>About Me</Text>
+          <Text style={styles.cardText}>{studentInfo.about}</Text>
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Achievements</Text>
+          {studentInfo.awards.map((a, i) => (
+            <View key={i} style={styles.listRow}>
+              <View style={styles.dot} />
+              <Text style={styles.listText}>{a}</Text>
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Skills</Text>
+          <View style={styles.skillBox}>
+            {studentInfo.skills.map((s, i) => (
+              <View key={i} style={styles.skillTag}>
+                <Text style={styles.skillText}>{s}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  page: { flex: 1, backgroundColor: '#F6F8FB' },
+  main: { padding: 20 },
+
+  headerBox: {
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    padding: 16,
+    marginTop: 40,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 3,
+  },
+  textPart: { flex: 1 },
+  name: { fontSize: 22, fontWeight: '700', color: '#1F2937' },
+  course: { fontSize: 14, color: '#6B7280', marginTop: 4 },
+  row: { flexDirection: 'row', marginTop: 10 },
+  tag: {
+    backgroundColor: '#EEF2FF',
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+    marginRight: 8,
+  },
+  tagText: { fontSize: 12, color: '#3730A3' },
+
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    shadowColor: '#000',
+    shadowOpacity: 0.03,
+    shadowRadius: 8,
+    elevation: 2,
+  },
+  cardTitle: { fontSize: 16, fontWeight: '600', color: '#111827', marginBottom: 8 },
+  cardText: { fontSize: 14, color: '#374151', lineHeight: 20 },
+
+  listRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 8 },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#6366F1',
+    marginTop: 6,
+    marginRight: 10,
+  },
+  listText: { flex: 1, fontSize: 14, color: '#374151' },
+
+  skillBox: { flexDirection: 'row', flexWrap: 'wrap' },
+  skillTag: {
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 12,
+    backgroundColor: '#ECFDF5',
+    marginRight: 8,
+    marginBottom: 8,
+  },
+  skillText: { fontSize: 13, color: '#065F46' },
+});
